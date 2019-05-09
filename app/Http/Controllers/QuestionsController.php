@@ -65,8 +65,8 @@ class QuestionsController extends Controller
      */
     public function edit($id)
     {
-        $question = Question::findOrFail($id);
-        return view('questions.edit', compact('question'));
+        $questions = Question::findOrFail($id);
+        return view('questions.edit', compact('questions'));
     }
 
     /**
@@ -90,6 +90,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return redirect('\questions')->with('success','Your question has been deleted');
     }
 }
